@@ -1,0 +1,18 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: Trait d'Union Admin
+    environment:
+      - APPLICATION_HOST=localhost
+      - APPLICATION_PORT=3310
+      - DATABASE_URL=postgres://trait:dunion@host.docker.internal:5433/traitdunion
+      - DATABASE_SSL=false
+      - DATABASE_ENCRYPT=false
+      - AUTH_SECRET=07f2de30e889fc66e4e631a3fbd6b29aee47cb66229189f27ae887a67f4121343e2bcd3ee5d36bf64f57ce37a1af0b0c
+    ports:
+      - "3310:3310"
+    volumes:
+      - ./:/usr/src/app
