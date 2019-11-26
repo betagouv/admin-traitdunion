@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
         'canceled',
       ),
     },
-    imgURL: {
+    imageURL: {
       type: DataTypes.STRING,
     },
     contractType: {
