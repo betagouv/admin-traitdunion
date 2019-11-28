@@ -66,11 +66,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     createdAt: {
       type: DataTypes.DATE,
-      defaultValue: Sequelize.literal('2019-11-14 13:55:26.256+00'),
+      defaultValue: new Date(),
     },
     updatedAt: {
       type: DataTypes.DATE,
-      defaultValue: Sequelize.literal('2019-11-14 13:55:26.256+00'),
+      defaultValue: new Date(),
     },
   }, {
     tableName: 'offres',
