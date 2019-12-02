@@ -9,57 +9,58 @@ const niveauxEtude = [
 
 module.exports = (sequelize, DataTypes) => {
   const {Sequelize} = sequelize
-  const Candidats = sequelize.define('candidats', {
+  const Candidats = sequelize.define('candidatures', {
     id: {
-      type: DataTypes.UUID,
+      type: Sequelize.UUID,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      defaultValue: Sequelize.UUIDV4
     },
     firstName: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: true
     },
     lastName: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: true
     },
     email: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
-      unique: true
+      unique: false
     },
     niveauEtude: {
-      type: DataTypes.ENUM(niveauxEtude),
-      validate: {isIn: niveauxEtude},
+      type: Sequelize.ENUM(niveauxEtude),
+      validate: { isIn: niveauxEtude },
       allowNull: true
     },
     zipCode: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: true
     },
     poleEmploiId: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: true
     },
     phoneNumber: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: true
     },
     age: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
       allowNull: true
     },
     otherJobs: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: true
     },
     acceptFollowingTraining: {
-      type: DataTypes.BOOLEAN,
+      type: Sequelize.BOOLEAN,
       allowNull: false,
       defaultValue: true
     }
   }, {
-    tableName: 'candidats'
+    tableName: 'candidatures'
   })
 
   Candidats.associate = (models) => {

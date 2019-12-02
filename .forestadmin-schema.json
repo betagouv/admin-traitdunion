@@ -1,7 +1,7 @@
 {
   "collections": [{
-    "name": "candidats",
-    "nameOld": "candidats",
+    "name": "candidatures",
+    "nameOld": "candidatures",
     "icon": null,
     "integration": null,
     "isReadOnly": false,
@@ -95,16 +95,12 @@
       "integration": null,
       "isFilterable": true,
       "isReadOnly": false,
-      "isRequired": true,
+      "isRequired": false,
       "isSortable": true,
       "isVirtual": false,
       "reference": null,
       "inverseOf": null,
-      "validations": [{
-        "message": null,
-        "type": "is present",
-        "value": null
-      }]
+      "validations": []
     }, {
       "field": "lastName",
       "type": "String",
