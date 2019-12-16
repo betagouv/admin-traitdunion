@@ -3,26 +3,26 @@ module.exports = (sequelize, DataTypes) => {
     'candidature',
     {
       id: {
-        type: Sequelize.UUID,
+        type: DataTypes.UUID,
         allowNull: false,
         primaryKey: true,
-        defaultValue: Sequelize.UUIDV4
+        defaultValue: DataTypes.UUIDV4
       },
       offreId: {
-        type: Sequelize.UUID,
+        type: DataTypes.UUID,
         allowNull: false
       },
       candidatId: {
-        type: Sequelize.UUID,
+        type: DataTypes.UUID,
         allowNull: false
       },
       createdAt: {
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
         allowNull: false,
         defaultValue: new Date()
       },
       updatedAt: {
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
         allowNull: false,
         defaultValue: new Date()
       }
@@ -33,14 +33,16 @@ module.exports = (sequelize, DataTypes) => {
     }
   )
 
-  Candidature.associate = ({ Candidature, Offre, Candidat }) => {
-    Offre.Candidats = Offre.belongsToMany(Candidat, {
-      through: { model: Candidature }
+  Candidature.associate = (models) => {
+    console.log(models)
+    const { candidature, offres, candidats } = models
+    offres.belongsToMany(candidats, {
+      through: { model: candidature }
     })
-    Candidat.belongsToMany(Offre, { through: { model: Candidature } })
-    Offre.Candidatures = Candidat.hasMany(Candidature)
-    Candidature.belongsTo(Offre)
-    Candidature.belongsTo(Candidat)
+    candidats.belongsToMany(offres, { through: { model: candidature } })
+    offres.candidatures = candidats.hasMany(candidature)
+    candidature.belongsTo(offres)
+    candidature.belongsTo(candidats)
   }
 
   return Candidature

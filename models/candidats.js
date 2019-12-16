@@ -7,6 +7,14 @@ const niveauxEtude = [
   'bac-5'
 ]
 
+const deStatuses = [
+  'inscrit-pe',
+  'salarie',
+  'jeune-mission-locale',
+  'handicape-cap-emploi',
+  'autre'
+]
+
 module.exports = (sequelize, DataTypes) => {
   const Candidats = sequelize.define(
     'candidats',
