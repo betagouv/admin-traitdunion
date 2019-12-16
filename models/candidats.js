@@ -8,64 +8,94 @@ const niveauxEtude = [
 ]
 
 module.exports = (sequelize, DataTypes) => {
-  const {Sequelize} = sequelize
-  const Candidats = sequelize.define('candidatures', {
-    id: {
-      type: Sequelize.UUID,
-      allowNull: false,
-      primaryKey: true,
-      defaultValue: Sequelize.UUIDV4
+  const Candidats = sequelize.define(
+    'candidats',
+    {
+      id: {
+        type: DataTypes.UUID,
+        allowNull: false,
+        primaryKey: true,
+        defaultValue: DataTypes.UUIDV4
+      },
+      firstName: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      lastName: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true
+      },
+      niveauEtude: {
+        type: DataTypes.ENUM(niveauxEtude),
+        validate: { isIn: [niveauxEtude] },
+        allowNull: true
+      },
+      zipCode: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      poleEmploiId: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      phoneNumber: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      age: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+      },
+      otherJobs: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      acceptFollowingTraining: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true
+      },
+      salt: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      activationKey: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      resetPasswordKey: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      verified: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true
+      },
+      password: {
+        type: DataTypes.TEXT,
+        allowNull: true
+      },
+      birthdate: {
+        type: DataTypes.DATEONLY,
+        allowNull: true
+      },
+      deStatus: {
+        type: DataTypes.ENUM(deStatuses),
+        validate: { isIn: [deStatuses] },
+        allowNull: true
+      }
     },
-    firstName: {
-      type: Sequelize.STRING,
-      allowNull: true
-    },
-    lastName: {
-      type: Sequelize.STRING,
-      allowNull: true
-    },
-    email: {
-      type: Sequelize.STRING,
-      allowNull: false,
-      unique: false
-    },
-    niveauEtude: {
-      type: Sequelize.ENUM(niveauxEtude),
-      validate: { isIn: niveauxEtude },
-      allowNull: true
-    },
-    zipCode: {
-      type: Sequelize.STRING,
-      allowNull: true
-    },
-    poleEmploiId: {
-      type: Sequelize.STRING,
-      allowNull: true
-    },
-    phoneNumber: {
-      type: Sequelize.STRING,
-      allowNull: true
-    },
-    age: {
-      type: Sequelize.INTEGER,
-      allowNull: true
-    },
-    otherJobs: {
-      type: Sequelize.STRING,
-      allowNull: true
-    },
-    acceptFollowingTraining: {
-      type: Sequelize.BOOLEAN,
-      allowNull: false,
-      defaultValue: true
+    {
+      tableName: 'candidats'
     }
-  }, {
-    tableName: 'candidatures'
-  })
+  )
 
-  Candidats.associate = (models) => {
-  }
+  Candidats.associate = (models) => {}
 
   return Candidats
 }
-
