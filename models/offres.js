@@ -71,10 +71,17 @@ module.exports = (sequelize, DataTypes) => {
     }
   )
 
-  Offres.associate = (models) => {}
+  Offres.associate = ({candidature, metiers}) => {
+    Offres.hasMany(candidature)
+    Offres.hasOne(metiers, {
+      foreignKey: 'codeROME',
+      sourceKey: 'codeROME',
+      targetKey: 'codeROME'
+    })
+  }
 
   Offres.afterUpdate((offre, options) => {
-    const { status, _previousDataValues } = offre
+    const {status, _previousDataValues} = offre
     if (_previousDataValues.status === 'draft' && status === 'published') {
       const requestOptions = {
         uri: process.env.OFFRE_PUBLISHED_HOOK_URL,
